@@ -1,7 +1,23 @@
 body {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin: 0;
+}
+
+.toolbar {
+  padding: 10px 30px;
+  font-family: cursive;
+  font-size: 2rem;
+  background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -12,10 +28,12 @@ body {
     width: 300px;
     margin: 10px;
     border: 1px solid #eaeaea;
-    font-family: "proxima-soft", "Proxima Soft", "Proxima Nova Soft", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
+    font-family: cursive;
     transition: all .3s;
+}
+
+.card div:first-child {
+  text-transform: uppercase;
 }
 
 .card:hover {
@@ -35,33 +53,35 @@ body {
 
 #snackbar {
     visibility: hidden;
-    min-width: 100px;
+    min-width: 150px;
     margin-left: -50px;
     background-color: #333;
     color: #fff;
     text-align: center;
-    border-radius: 20px;
-    padding: 10px 0px;
+    border-radius: 15px;
+    padding: 7px 0px;
     position: fixed;
     z-index: 1;
     left: 50%;
-    top: 30px;
+    bottom: 30px;
     font-size: 17px;
+    background-image: linear-gradient(to left, indigo,  red);
+    font-family: cursive;
   }
   
   #snackbar.show {
     visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
   }
   
   @keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
   }
   
   @keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
   }
 
 #textarea {

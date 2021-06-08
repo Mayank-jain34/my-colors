@@ -18,7 +18,7 @@ function getCardTemplate(color) {
     var cardTemplate = `
         <div class="card" data-color="${color}">
             <div class="card__color" style="background: ${color}"></div>
-            <div class="card__color-code">
+            <div class="card__color-code" style="color: ${color}">
                 <div>${color}</div>
                 <div>rgba(${toRgba(color).join(', ')})</div>
             </div>
@@ -44,8 +44,9 @@ _.sortBy(colors, (a, b) => {
 
     return Math.sqrt(Math.pow(d1, 2), Math.pow(d2, 2), Math.pow(d3, 2));
 }).forEach(color => {
+    var cards = document.querySelector('.cards');
     var t = getCardTemplate(color);
-    document.body.appendChild(htmlToElement(t));
+    cards.appendChild(htmlToElement(t));
 });
 
 let snakeBarTimeout = null;
@@ -60,7 +61,7 @@ function showSnakeBar() {
     snakeBarTimeout = setTimeout(function () {
         x.className = x.className.replace("show", "");
         snakeBarTimeout = null;
-    }, 3000);
+    }, 2000);
 }
 
 function copyToClipboard(value) {
@@ -72,8 +73,11 @@ function copyToClipboard(value) {
 }
 
 document.body.addEventListener('click', (e) => {
-    const card = e.target.closest('.card');
+    if (!e.target.classList.contains('card__color')) {
+        return;
+    }
 
+    const card = e.target.closest('.card');
     if (!card) return;
 
     const color = card.getAttribute('data-color');
